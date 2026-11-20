@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Peak router",
+    "description": "Moves live sessions to a cheaper route inside another provider's peak-pricing window, and back when the window ends."
+  }
+}

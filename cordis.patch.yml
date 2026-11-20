@@ -1,0 +1,17 @@
+# The dsh-peak-router bundle patch: inserts its own row.
+#
+# The row ships with the package defaults (enabled, DeepSeek peak windows read in
+# Asia/Shanghai, deeprelay first in the peak preference list). A profile that
+# wants another route or window overrides this row by id in its own patch layer:
+#
+#   - id: dsh-peak-router
+#     config:
+#       peakRoutes:
+#         - provider: some-provider
+#           model: some-model
+#
+# The Peak Router page in Settings saves its own overrides to
+# `<dsh home>/dsh-peak-router.json`, so the common case needs no patch edit.
+- insert:
+    - id: dsh-peak-router
+      name: dsh-peak-router
