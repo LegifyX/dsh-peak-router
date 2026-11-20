@@ -118,7 +118,9 @@ Paused:
 
 ## Configure in the Web UI
 
-Open **Settings → Web Extensions → Peak Router**. The page shows the current
+Open **Settings → Web Extensions → Peak Router**. If the Web Extensions parent is
+not installed or is disabled, the same page appears as a first-level **Peak
+Router** settings section instead. The page shows the current
 period, the next boundary, the live route count and the last switch, and edits:
 
 - the enable switch (a pill toggle like the other Web Extensions pages), the
