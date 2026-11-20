@@ -1,6 +1,6 @@
 {
   "name": "dsh-peak-router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Peak/off-peak model routing for DeepSeek Harness: at DeepSeek peak pricing, move live sessions to a cheaper route such as deeprelay's DeepSeek-V4.1-Flash, and optionally back off-peak. Skips the swap when the target's remaining quota is nearly spent.",
   "type": "module",
   "main": "lib/index.js",

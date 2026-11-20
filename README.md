@@ -193,6 +193,11 @@ Restart the Host once after installing, so the patch row and the client module
 manifest load. Later changes to `lib/client.js` need only a page refresh;
 changes to `lib/index.js` still need a restart.
 
+If an earlier manual install left a `- insert: dsh-peak-router` row in the
+profile, remove it: the bundle patch inserts that row itself, and a second row
+with the same id would mount the plugin twice. Keep any configuration as an
+`- id: dsh-peak-router` override instead.
+
 Configure it in the UI (Settings → Web Extensions → Peak Router), which stores
 overrides in `<dsh home>/dsh-peak-router.json`. To ship defaults for a profile
 instead, override the row by id in the profile's patch layer:
