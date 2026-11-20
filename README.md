@@ -171,22 +171,38 @@ select, so an older route is never silently dropped.
 
 ## Install
 
-The package has a host half (`lib/index.js`) and a Web Extensions page
-(`lib/client.js`, declared through `dsh.client` in `package.json`). A profile
-that links it and inserts the row works:
+The package is a bundle: `dsh.bundle.patch` names `cordis.patch.yml`, which
+inserts the `dsh-peak-router` row itself, and `dsh.client` declares the Web
+Extensions page (`lib/client.js`). Install it like any other bundle — Plugin
+Manager in the Web UI, or the same package operation from a shell:
 
-```yaml
-# profile package.json
-"dsh-peak-router": "link:./plugins/dsh-peak-router"
+```bash
+dsh plugin --profile web add github:<owner>/dsh-peak-router#<commit>
 ```
 
-```yaml
-# profile cordis.patch.yml
-- insert:
-    - id: dsh-peak-router
-      name: dsh-peak-router
-      config: { ... }
+then switch the `dsh-peak-router` bundle on in Settings → Plugins. Pinning the
+commit keeps an update an explicit step instead of a surprise.
+
+For work on a checkout, install the directory instead and restart:
+
+```bash
+dsh plugin --profile web add link:/path/to/dsh-peak-router
 ```
 
-Restart the Host for the row *and its client module manifest* to load. After
-that, a page refresh is enough for later code changes.
+Restart the Host once after installing, so the patch row and the client module
+manifest load. Later changes to `lib/client.js` need only a page refresh;
+changes to `lib/index.js` still need a restart.
+
+Configure it in the UI (Settings → Web Extensions → Peak Router), which stores
+overrides in `<dsh home>/dsh-peak-router.json`. To ship defaults for a profile
+instead, override the row by id in the profile's patch layer:
+
+```yaml
+- id: dsh-peak-router
+  config:
+    peakRoutes:
+      - provider: deeprelay
+        model: deeprelay/deepseek-v4.1-flash
+    offPeakProvider: deepseek-account
+    offPeakModel: deepseek-flash
+```
